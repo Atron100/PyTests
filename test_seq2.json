@@ -1,0 +1,30 @@
+{
+	"test sequence name": "RF DUT TEST",
+	"version": "12.2.3",
+	"station": "ATE PCBA",
+	"testlist": 
+	{
+		"testarray" :
+		[
+		{
+			"id": 1,
+			"check": 1,
+			"testname" : "measure DUT",
+			"steps":["setup(30)", "setup_dut(2)", "measure_pik(20)"],
+			"min": 0.34,
+			"max": 23.45,
+			"units": "V"			
+		},
+		{
+			"id": 2,
+			"check": 1,
+			"testname" : "measure FRACAS",
+			"steps":["setup_id(30)", "setup_dut_app(2)", "measure_pik(20)"],
+			"min": 0.74,
+			"max": 23.45,
+			"units": "A"	
+		}		
+		]
+	},
+	"station_id": "PCBA_012025"
+}
