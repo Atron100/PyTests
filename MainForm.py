@@ -3,7 +3,7 @@ from tkinter import ttk
 import random
 import json
 import re
-#from Drivers.power_supply import PowerSupply
+#from Drivers.power_supply import PowerSupply - test afterwards
 
 class TestEngine:
     def __init__(self, sequence, treeview):
