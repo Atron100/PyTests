@@ -3,16 +3,16 @@ from tkinter import ttk
 import random
 import json
 import re
-#from Drivers.power_supply import PowerSupply - test afterwards
+from Drivers.power_supply import PowerSupply
 
 class TestEngine:
     def __init__(self, sequence, treeview):
         self.sequence = sequence
         self.treeview = treeview
         self.results = []
-        #self.power_supply = PowerSupply()
+        self.power_supply = PowerSupply()
         #self.power_supply.open_connection("GPIB::1")  # Example resource name
-        #self.command_registry = self.power_supply.register_commands()
+        self.command_registry = self.power_supply.register_commands()
         self.update_treeview()
 
     
