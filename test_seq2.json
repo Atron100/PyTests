@@ -10,7 +10,7 @@
 			"id": 1,
 			"check": 1,
 			"testname" : "measure DUT",
-			"steps":["setup(30)", "setup_dut(2)", "measure_pik(20)"],
+			"steps":["PS_SETUP_VOLTAGE(30,1)", "PS_SETUP_CURRENT(2,1)", "PS_POWER_ON(1)"],
 			"min": 0.34,
 			"max": 23.45,
 			"units": "V"			
@@ -19,7 +19,7 @@
 			"id": 2,
 			"check": 1,
 			"testname" : "measure FRACAS",
-			"steps":["setup_id(30)", "setup_dut_app(2)", "measure_pik(20)"],
+			"steps":["PS_POWER_ON(25,2)"],
 			"min": 0.74,
 			"max": 23.45,
 			"units": "A"	

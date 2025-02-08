@@ -3,16 +3,16 @@ from tkinter import ttk
 import random
 import json
 import re
-from Drivers.power_supply import PowerSupply
+from Drivers.power_supply import PowerSuplly
 
 class TestEngine:
     def __init__(self, sequence, treeview):
         self.sequence = sequence
         self.treeview = treeview
         self.results = []
-        self.power_supply = PowerSupply()
+        self.PS = PowerSuplly()
         #self.power_supply.open_connection("GPIB::1")  # Example resource name
-        self.command_registry = self.power_supply.register_commands()
+        self.command_registry = self.PS.register_commands
         self.update_treeview()
 
     
@@ -47,9 +47,11 @@ class TestEngine:
             command, params = command_match.groups()
             params = [int(p.strip()) for p in params.split(',') if p.strip()]
 
-            if command in self.command_registry:
+            command_dict = self.command_registry()  # Correctly call the method
+
+            if command in command_dict:
                 try:
-                    self.command_registry[command](*params)
+                    command_dict[command](*params)
                 except TypeError as e:
                     print(f"Parameter mismatch for {command}: {e}")
                 except Exception as e:
@@ -65,7 +67,7 @@ class TestEngine:
                 if self.treeview.item(item, 'values')[2] == test['testname']:
                     self.run_test(test, item)
         self.print_results()
-        self.power_supply.close_connection()
+        self.PS.close_connection()
 
     def print_results(self):
         print("\nTest Results:")
@@ -114,6 +116,8 @@ class Application(tk.Tk):
         with open(filename, 'r') as file:
             sequence = json.load(file)
         return sequence
+
+
 
 sequence_file = "test_seq2.json"
 try:
